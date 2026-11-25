@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfilePage","@id":"https://snickaria.github.io/#profile","url":"https://snickaria.github.io/","name":"Dr. Shiva NickAria","mainEntity":{"@type":"Person","@id":"https://snickaria.github.io/#person","name":"Shiva NickAria","honorificPrefix":"Dr.","alternateName":"Shiva Nasirabadi","url":"https://snickaria.github.io/","jobTitle":"Founder & AI Platform Architect","worksFor":{"@type":"Organization","name":"ARIA Therapeutics (ARIA-Tx)","url":"https://aria-tx.com/"},"description":"Translational scientist and AI platform architect working across clinical and molecular genetics, immuno-oncology, therapeutic engineering and machine learning.","sameAs":["https://scholar.google.com/citations?hl=en&user=12HltGkAAAAJ","https://orcid.org/0000-0002-7769-2776","https://www.linkedin.com/in/shivanickaria","https://github.com/SNickaria"]}}
 </script>
@@ -27,6 +27,8 @@
   --cornflower-bright:#6495ed;
   --sky:#87cefa;
   --baby:#e6f3ff;
+  --aria:#075b64;
+  --aria-hover:#05444b;
   --line:#cfe3f7;
   --paper:#ffffff;
   --wash:#f4f9fd;
@@ -39,7 +41,7 @@ body{
   font:16.5px/1.75 'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   -webkit-font-smoothing:antialiased;
 }
-h1,h2,h3{
+h2,h3{
   font-family:'Plus Jakarta Sans',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   color:var(--ink);
 }
@@ -53,18 +55,28 @@ a:hover{
   color:#1a47a3;
   text-decoration-color:var(--cornflower);
 }
+a.aria-link{
+  color:var(--aria);
+  text-decoration-color:rgba(7,91,100,0.45);
+}
+a.aria-link:hover{
+  color:var(--aria-hover);
+  text-decoration-color:var(--aria);
+}
 a:focus-visible{outline:3px solid var(--cornflower-bright);outline-offset:4px;border-radius:4px}
-.wrap{max-width:980px;margin:auto;padding:68px 28px 80px}
+.wrap{max-width:1020px;margin:auto;padding:68px 28px 80px}
 header{
   padding-bottom:40px;
   border-bottom:1px solid var(--line);
 }
 h1{
-  font-size:clamp(2.15rem,5vw,3.15rem);
-  font-weight:800;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(2.35rem,5vw,3.45rem);
+  font-weight:600;
   line-height:1.12;
-  letter-spacing:-0.03em;
-  margin:0 0 16px;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin:0 0 18px;
 }
 h2{
   font-size:1.45rem;
@@ -103,18 +115,19 @@ p{margin:0 0 18px}
   color:#18459e;
   font-family:'Plus Jakarta Sans',system-ui,sans-serif;
   font-weight:700;
-  font-size:1.06rem;
-  line-height:1.5;
-  max-width:820px;
+  font-size:clamp(0.84rem,1.42vw,1.02rem);
+  line-height:1.45;
+  white-space:nowrap;
+  max-width:100%;
   margin-bottom:24px;
-  padding:10px 18px;
+  padding:10px 20px;
   background:rgba(255,255,255,0.88);
   border:1px solid var(--line);
   border-left:4px solid var(--cornflower-bright);
   border-radius:10px;
   box-shadow:0 4px 14px rgba(43,96,199,0.10);
 }
-.bio{max-width:820px;color:#1d324d}
+.bio{max-width:860px;color:#1d324d}
 .profiles{
   display:flex;
   gap:10px 12px;
@@ -139,6 +152,15 @@ p{margin:0 0 18px}
   border-color:var(--cornflower-bright);
   color:#1a47a3;
   transform:translateY(-1px);
+}
+.profiles a.aria-link{
+  color:var(--aria);
+  border-color:rgba(7,91,100,0.32);
+}
+.profiles a.aria-link:hover{
+  background:#e6f4f5;
+  border-color:var(--aria);
+  color:var(--aria-hover);
 }
 section{padding-top:48px}
 .grid{
@@ -180,6 +202,9 @@ footer{
 }
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:16px;top:12px;background:#fff;padding:8px 12px;z-index:2;border:1px solid var(--cornflower-bright);border-radius:6px}
+@media(max-width:780px){
+  .role{white-space:normal}
+}
 @media(max-width:650px){
   .wrap{padding:44px 20px 64px}
   .grid{grid-template-columns:1fr}
@@ -191,16 +216,16 @@ footer{
 <div class="wrap">
 <header>
 <h1>Dr. Shiva NickAria</h1>
-<p class="role">Founder &amp; AI Platform Architect at <a href="https://aria-tx.com/" target="_blank" rel="noopener">ARIA Therapeutics (ARIA-Tx)</a> | Immuno-Oncology &amp; Genetics</p>
+<p class="role">Founder &amp; AI Platform Architect at <a class="aria-link" href="https://aria-tx.com/" target="_blank" rel="noopener">ARIA Therapeutics (ARIA-Tx)</a> | Immuno-Oncology &amp; Genetics</p>
 <div class="bio">
 <p>Most therapeutic programmes falter long before they reach patients because clinical presentation, molecular mechanism, and chemical design are rarely examined inside the same framework. I build systems that bring those layers together, evaluating clinical phenotypes and treatment responses alongside genomic, molecular, and chemical architecture to uncover where a disease is genuinely vulnerable and identify the strongest therapeutic strategy for its context.</p>
 <p>Over fifteen years across clinical genetics, wet-lab therapeutic development, and computational biology, I have moved from diagnosing rare inherited disorders and developing genome engineering strategies, to designing and building a novel antibody-based immunotherapeutic from scratch during my PhD in immuno-oncology, to building machine-learning pipelines for high-dimensional disease profiling. Today, as Founder and AI Platform Architect at ARIA-Tx, I am translating that multidisciplinary perspective into ARIA-Tx's closed learning loop, architecting generative, predictive, and agentic AI systems for a platform advancing a new class of programmable biotherapeutics across disease and longevity.</p>
 </div>
 <nav class="profiles" aria-label="Research and professional profiles">
-<a href="https://aria-tx.com/" target="_blank" rel="noopener">ARIA-Tx</a>
+<a class="aria-link" href="https://aria-tx.com/" target="_blank" rel="noopener">ARIA-Tx</a>
+<a href="https://www.linkedin.com/in/shivanickaria" target="_blank" rel="me noopener">LinkedIn</a>
 <a href="https://scholar.google.com/citations?hl=en&amp;user=12HltGkAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
 <a href="https://orcid.org/0000-0002-7769-2776" target="_blank" rel="me noopener">ORCID</a>
-<a href="https://www.linkedin.com/in/shivanickaria" target="_blank" rel="me noopener">LinkedIn</a>
 <a href="https://github.com/SNickaria" target="_blank" rel="me noopener">GitHub</a>
 <a href="mailto:shiva.nickaria@gmail.com">Email</a>
 </nav>
@@ -218,7 +243,7 @@ footer{
 </section>
 <section aria-labelledby="research">
 <h2 id="research">Selected Research &amp; Development</h2>
-<article class="example"><h3><a href="https://aria-tx.com/" target="_blank" rel="noopener">ARIA-Tx: Programmable Biotherapeutics Platform</a></h3><p>Founder-led architecture and development of ARIA-Tx, integrating generative, predictive, and agentic AI systems with therapeutic synthesis, experimental development, and translational therapeutic packages for a new class of programmable biotherapeutics across disease and longevity.</p></article>
+<article class="example"><h3><a class="aria-link" href="https://aria-tx.com/" target="_blank" rel="noopener">ARIA-Tx: Programmable Biotherapeutics Platform</a></h3><p>Founder-led architecture and development of ARIA-Tx, integrating generative, predictive, and agentic AI systems with therapeutic synthesis, experimental development, and translational therapeutic packages for a new class of programmable biotherapeutics across disease and longevity.</p></article>
 <article class="example"><h3>Immunotherapy Development</h3><p>Developed a novel antibody-based immunotherapeutic during my PhD at the University of Aberdeen, combining therapeutic design, molecular engineering and functional investigation in B-cell malignancies to reprogramme the innate immune system as a therapeutic strategy.</p></article>
 <article class="example"><h3>Spatial Profiling &amp; Machine Learning</h3><p>Developed an end-to-end ML analysis pipeline for high-plex CODEX imaging and spatial profiling of the tumour microenvironment at the University of Manchester, investigating cellular neighbourhoods, cell-cell interactions and immune organisation in bone marrow malignancies.</p></article>
 <article class="example"><h3>Precision Diagnostics &amp; Gene and Cell Therapies</h3><p>Led genetics diagnostics and translational genome engineering programmes at Shiraz University of Medical Sciences, establishing genomic and molecular diagnostic platforms for rare inherited disorders and malignancies alongside multinational clinical research collaborations. Directed genome engineering and CRISPR-based genome editing of stem and progenitor cells as a therapeutic strategy, integrating engineering optimisation, off-target safety assessment, and functional validation.</p></article>
