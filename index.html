@@ -34,6 +34,7 @@
   --wash:#f4f9fd;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;
   background:linear-gradient(180deg,#e4f2fe 0%,#f4f9fd 360px,#f7fbff 100%);
@@ -63,7 +64,7 @@ a.aria-link:hover{
   color:var(--aria-hover);
   text-decoration-color:var(--aria);
 }
-a:focus-visible{outline:3px solid var(--cornflower-bright);outline-offset:4px;border-radius:4px}
+a:focus-visible,input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--cornflower-bright);outline-offset:3px;border-radius:4px}
 .wrap{max-width:1020px;margin:auto;padding:68px 28px 80px}
 header{
   padding-bottom:40px;
@@ -193,6 +194,60 @@ section{padding-top:48px}
   border-radius:12px;
 }
 .note{font-size:0.9rem;color:var(--muted);margin-bottom:0}
+.contact-card{
+  padding:28px 30px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-top:3px solid var(--cornflower-bright);
+  border-radius:12px;
+  box-shadow:0 4px 16px rgba(100,149,237,0.06);
+}
+.contact-intro{font-size:0.95rem;color:var(--muted);margin-bottom:20px}
+.contact-form{display:grid;gap:14px}
+.form-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field label{
+  display:block;
+  font-size:0.86rem;
+  font-weight:600;
+  color:#14305c;
+  margin-bottom:6px;
+}
+.field input,.field textarea{
+  width:100%;
+  padding:11px 14px;
+  font:inherit;
+  font-size:0.95rem;
+  color:var(--ink);
+  background:var(--wash);
+  border:1px solid var(--line);
+  border-radius:8px;
+  transition:border-color .16s ease,background-color .16s ease;
+}
+.field input:focus,.field textarea:focus{
+  background:var(--paper);
+  border-color:var(--cornflower-bright);
+  outline:none;
+}
+.field textarea{min-height:124px;resize:vertical}
+.submit-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:4px}
+.btn{
+  padding:11px 24px;
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  font-size:0.94rem;
+  font-weight:700;
+  color:#ffffff;
+  background:#18459e;
+  border:none;
+  border-radius:999px;
+  cursor:pointer;
+  box-shadow:0 3px 10px rgba(24,69,158,0.18);
+  transition:background-color .16s ease,transform .16s ease;
+}
+.btn:hover{background:#12367c;transform:translateY(-1px)}
+.btn:disabled{opacity:0.65;cursor:not-allowed;transform:none}
+.form-status{font-size:0.9rem;font-weight:500;color:var(--muted);margin:0}
+.form-status.ok{color:#006666}
+.form-status.err{color:#b42318}
 footer{
   margin-top:56px;
   padding-top:24px;
@@ -207,7 +262,7 @@ footer{
 }
 @media(max-width:650px){
   .wrap{padding:44px 20px 64px}
-  .grid{grid-template-columns:1fr}
+  .grid,.form-row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -227,7 +282,7 @@ footer{
 <a href="https://scholar.google.com/citations?hl=en&amp;user=12HltGkAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
 <a href="https://orcid.org/0000-0002-7769-2776" target="_blank" rel="me noopener">ORCID</a>
 <a href="https://github.com/SNickaria" target="_blank" rel="me noopener">GitHub</a>
-<a href="mailto:shiva.nickaria@gmail.com">Email</a>
+<a href="#contact">Contact</a>
 </nav>
 </header>
 <main id="main">
@@ -255,8 +310,69 @@ footer{
 <p class="note">Earlier publications appear under Shiva Nasirabadi. Researcher identifier: <a href="https://orcid.org/0000-0002-7769-2776" target="_blank" rel="noopener">ORCID 0000-0002-7769-2776</a>.</p>
 </div>
 </section>
+<section id="contact" aria-labelledby="contact-heading">
+<h2 id="contact-heading">Contact</h2>
+<div class="contact-card">
+<p class="contact-intro">For scientific collaboration, speaking, advisory, or investment enquiries, send a message directly below.</p>
+<form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+<input type="hidden" name="access_key" value="54c8a735-b6f9-4743-8654-0eb0acb020b3">
+<input type="hidden" name="subject" value="New message from snickaria.github.io">
+<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+<div class="form-row">
+<div class="field">
+<label for="name">Name</label>
+<input id="name" type="text" name="name" required autocomplete="name" placeholder="Your name">
+</div>
+<div class="field">
+<label for="email">Email</label>
+<input id="email" type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+</div>
+</div>
+<div class="field">
+<label for="message">Message</label>
+<textarea id="message" name="message" required placeholder="Write your message here..."></textarea>
+</div>
+<div class="submit-row">
+<button type="submit" class="btn" id="submit-btn">Send Message</button>
+<p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+</div>
+</form>
+</div>
+</section>
 </main>
 <footer>© 2026 Dr. Shiva NickAria · Greater Manchester, UK</footer>
 </div>
+<script>
+const form = document.getElementById('contact-form');
+const statusEl = document.getElementById('form-status');
+const submitBtn = document.getElementById('submit-btn');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  submitBtn.disabled = true;
+  statusEl.className = 'form-status';
+  statusEl.textContent = 'Sending...';
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      statusEl.className = 'form-status ok';
+      statusEl.textContent = 'Thank you. Your message has been sent.';
+      form.reset();
+    } else {
+      statusEl.className = 'form-status err';
+      statusEl.textContent = 'Unable to send right now. Please try again shortly.';
+    }
+  } catch {
+    statusEl.className = 'form-status err';
+    statusEl.textContent = 'Network error. Please try again shortly.';
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+</script>
 </body>
 </html>
