@@ -64,7 +64,7 @@ h1{
   font-weight:800;
   line-height:1.12;
   letter-spacing:-0.03em;
-  margin:0 0 14px;
+  margin:0 0 16px;
 }
 h2{
   font-size:1.45rem;
@@ -93,13 +93,26 @@ h3{
   color:#14305c;
 }
 p{margin:0 0 18px}
+.bio p,.card p,.example p,.pub-card p{
+  text-align:justify;
+  hyphens:auto;
+  -webkit-hyphens:auto;
+}
 .role{
-  color:var(--cornflower);
+  display:inline-block;
+  color:#18459e;
   font-family:'Plus Jakarta Sans',system-ui,sans-serif;
-  font-weight:600;
+  font-weight:700;
   font-size:1.06rem;
-  max-width:800px;
-  margin-bottom:22px;
+  line-height:1.5;
+  max-width:820px;
+  margin-bottom:24px;
+  padding:10px 18px;
+  background:rgba(255,255,255,0.88);
+  border:1px solid var(--line);
+  border-left:4px solid var(--cornflower-bright);
+  border-radius:10px;
+  box-shadow:0 4px 14px rgba(43,96,199,0.10);
 }
 .bio{max-width:820px;color:#1d324d}
 .profiles{
